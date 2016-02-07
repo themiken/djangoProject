@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	{% load staticfiles %}
 	<meta charset="UTF-8">
 	<title>Hello World</title>
+	<link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
+	<h1>Hello</h1>
+	<a href="{% url 'productos.views.NewProduct'%}">Nuevo Producto</a>
 	<ul>
-		{% for pr in product%}
+		{% for pr in product %}
 			<li>
-				{{pr.name}}
-				{{pr.description}}
+				<a href="{% url 'productos.views.ProductDetail' pk=pr.pk %}">
+					{{ pr.name }}
+				</a>
+				{{ pr.description }}
+				<img src="{{ pr.image.url }}" alt=""></img>
 			</li>
-		{% endfor%}
+		{% endfor %}
 	</ul>	
 </body>
 </html>
