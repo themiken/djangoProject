@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load staticfiles %}
+	<meta charset="UTF-8">
+	<title>Hello World</title>
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+</head>
+<body>
+	<h1 class="text-primary">
+		Hello
+		{% if user.is_authenticated %}
+			<h3>{{ user.username }} | <a href="{% url "products:logout" %}">Logout</a></h3>
+		{% else %}
+			<a href="{% url "products:authentication" %}">Login</a>
+		{% endif %}
+	</h1>
+	<a class="new-product btn btn-lg btn-primary"href="{% url "products:new" %}">Nuevo Producto</a>
+	<ul>
+		{% for pr in object_list %}
+		<section>
+			<articule class="articuleItemContainer">
+				<li>
+					<a class="product-info label label-default" href="{% url "products:detail" pr.id %}">
+						{{ pr.category }}
+					</a>
+					{{ pr.name }}
+					{% if pr.image %}
+    					<img src="{{ pr.image.url }}">
+					{% endif %}
+				</li>
+				<p>{{ pr.text }}</p>
+			</articule>
+		</section>
+		{% endfor %}
+	</ul>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

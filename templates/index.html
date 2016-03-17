@@ -4,21 +4,29 @@
 	{% load staticfiles %}
 	<meta charset="UTF-8">
 	<title>Hello World</title>
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 	<link rel="stylesheet" href="{% static 'css/base.css' %}">
+
 </head>
 <body>
-	<h1>Hello</h1>
-	<a href="{% url 'productos.views.NewProduct'%}">Nuevo Producto</a>
+	<h1 class="text-primary">Hello</h1>
+	<a class="new-product btn btn-lg btn-primary"href="{% url 'productos.views.NewProduct'%}">Nuevo Producto</a>
 	<ul>
 		{% for pr in product %}
-			<li>
-				<a href="{% url 'productos.views.ProductDetail' pk=pr.pk %}">
+		<section>
+			<articule class="articuleItemContainer">
+				<li>
+					<a class="product-info label label-default" href="{% url 'productos.views.ProductDetail' pk=pr.pk %}">
+						{{ pr.category }}
+					</a>
 					{{ pr.name }}
-				</a>
-				{{ pr.description }}
-				<img src="{{ pr.image.url }}" alt=""></img>
-			</li>
+					<img src="{{ pr.image.url }}" alt=""></img>
+				</li>
+				<p>{{ pr.text }}</p>
+			</articule>
+		</section>
 		{% endfor %}
-	</ul>	
+	</ul>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>

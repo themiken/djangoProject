@@ -2,3 +2,18 @@ img
 {
 	width: 200px;
 }
+
+.new-product
+{
+	margin: .5em;
+}
+
+.product-info
+{
+	margin: 0em .5em;
+}
+
+.articuleItemContainer
+{
+	margin: .5em;
+}
